@@ -77,6 +77,8 @@ namespace Tomboy
 
 			// The main editor widget
 			editor = new NoteEditor (note.Buffer);
+                        editor.ModifyBase(StateType.Normal, new Gdk.Color(0xcd,0xc0,0xb0));
+                        editor.ModifyText(StateType.Normal, new Gdk.Color(0x10,0x8,0));
 			editor.PopulatePopup += OnPopulatePopup;
 			editor.Show ();
 
@@ -106,7 +108,6 @@ namespace Tomboy
 			box.PackStart (template_widget, false, false, 0);
 			box.PackStart (editor_window, true, true, 0);
 			box.PackStart (find_bar, false, false, 0);
-
 			box.Show ();
 
 			// Don't set up Ctrl-W or Ctrl-N if Emacs is in use
@@ -515,7 +516,8 @@ namespace Tomboy
 
 			// Update items based on configuration.
 			UpdateMenuItems ();
-
+                        tb.ModifyBase(StateType.Normal, new Gdk.Color(0xcd,0xc0,0xb0));
+                        tb.ModifyBg(StateType.Normal, new Gdk.Color(0xcd,0xc0,0xb0));
 			tb.ShowAll ();
 			return tb;
 		}

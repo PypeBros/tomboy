@@ -55,7 +55,7 @@ namespace Tomboy
 				return null;
 
 			RemoteControl remote_control = new RemoteControl (manager);
-			Bus.Session.Register (Namespace,
+			Bus.Session.Register (// Namespace,
 			                      new ObjectPath (Path),
 			                      remote_control);
 			return remote_control;

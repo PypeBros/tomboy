@@ -14,6 +14,7 @@ namespace Tomboy.FixedWidth
 		{
 			base.Initialize (element_name);
 			Family = "monospace";
+                        PaletteForeground = ContrastPaletteColor.Purple;
 			CanGrow = true;
 			CanUndo = true;
 		}

@@ -348,18 +348,19 @@ namespace Tomboy
 		Gdk.Color get_background()
 		{
 			/* We can't know the exact background because we're not
-			   in TextView's rendering, but we can make a guess */
-			if (BackgroundSet)
-				return BackgroundGdk;
-
-			Gtk.Style s = Gtk.Rc.GetStyleByPaths(Gtk.Settings.Default,
-			                                     "GtkTextView", "GtkTextView", Gtk.TextView.GType);
-			if (s == null) {
-				Logger.Debug ("get_background: Style for GtkTextView came back null! Returning white...");
-				return new Gdk.Color (0xff, 0xff, 0xff); //white, for lack of a better idea
-			}
+			   in TextView's rendering, but we can make a guess 
+                           if (BackgroundSet)
+                           return BackgroundGdk;
+                           
+                           Gtk.Style s = Gtk.Rc.GetStyleByPaths(Gtk.Settings.Default,
+                           "GtkTextView", "GtkTextView", Gtk.TextView.GType);*/
+                  /*                  if (s == null) {*/
+                        Logger.Debug ("get_background: Style for GtkTextView came back null! Returning white...");
+                        return new Gdk.Color (0xd3, 0xd3, 0xd3); //white, for lack of a better idea
+/*			}
 			else
 				return s.Background(Gtk.StateType.Normal);
+*/
 		}
 
 		Gdk.Color render_foreground(ContrastPaletteColor symbol)
@@ -525,7 +526,6 @@ namespace Tomboy
 		void InitCommonTags ()
 		{
 			NoteTag tag;
-
 			// Font stylings
 
 			tag = new NoteTag ("centered");
@@ -537,6 +537,7 @@ namespace Tomboy
 
 			tag = new NoteTag ("bold");
 			tag.Weight = Pango.Weight.Bold;
+                        tag.PaletteForeground = ContrastPaletteColor.Black;
 			tag.CanUndo = true;
 			tag.CanGrow = true;
 			tag.CanSpellCheck = true;
@@ -551,6 +552,7 @@ namespace Tomboy
 
 			tag = new NoteTag ("strikethrough");
 			tag.Strikethrough = true;
+                        tag.PaletteForeground = ContrastPaletteColor.LightGrey;
 			tag.CanUndo = true;
 			tag.CanGrow = true;
 			tag.CanSpellCheck = true;
@@ -564,7 +566,7 @@ namespace Tomboy
 			Add (tag);
 
 			tag = new NoteTag ("find-match");
-			tag.Background = "green";
+			tag.Background = "lightgreen";
 			tag.CanSerialize = false;
 			tag.CanSpellCheck = true;
 			tag.SaveType = TagSaveType.Meta;
@@ -649,7 +651,7 @@ namespace Tomboy
 			tag = new NoteTag ("link:url");
 			tag.Underline = Pango.Underline.Single;
 			tag.PaletteForeground =
-			        ContrastPaletteColor.Blue;
+			        ContrastPaletteColor.Green;
 			tag.CanActivate = true;
 			tag.SaveType = TagSaveType.Meta;
 			Add (tag);
